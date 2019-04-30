@@ -26,17 +26,21 @@ public class Controller implements Initializable {
     private boolean living = true;
     Sphere xySphere;
     Sphere xzSphere;
+    Sphere yzSphere;
 
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        xySphere = new Sphere(200, 50,0, 20, Color.BLACK, 0, 0, 0, 1);
+        xySphere = new Sphere(200, 50,0, 20, Color.BLACK, 200, 0, 0, 1);
         panetr.getChildren().add(xySphere);
 
-        xzSphere = new Sphere(200,0,50,20, Color.BLACK, 0,0,0,2);
+        xzSphere = new Sphere(200,0,50,20, Color.BLACK, 200,0,0,2);
         panetl.getChildren().add(xzSphere);
+
+        yzSphere = new Sphere(0, 50, 200, 20, Color.BLACK, 200, 0, 0, 3);
+        panebl.getChildren().add(yzSphere);
 
         animationTimerXY = new AnimationTimer() {
             @Override
@@ -48,7 +52,10 @@ public class Controller implements Initializable {
                     xzSphere.setCenterX(xzSphere.getX0());
                     xzSphere.setCenterY(xzSphere.getZ0());
 
-                    new MoveEngine(now, xySphere, xzSphere);
+                    yzSphere.setCenterX(yzSphere.getZ0());
+                    yzSphere.setCenterY(yzSphere.getY0());
+
+                    new MoveEngine(now, xySphere, xzSphere, yzSphere);
 
                 }
             }
